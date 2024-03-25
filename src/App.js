@@ -1,25 +1,24 @@
-import logo from './logo.svg';
+import React from 'react';
+//import { Provider as StoreProvider } from 'react-redux';
+//import { configureStore } from './stores';
+import DemoScreen from './screens/DemoScreen';
+// import Storage from './common/storage'
+// import { login } from './redux/actions';
+// import { useDispatch } from 'react-redux';
 import './App.css';
 
 function App() {
+  // const store = configureStore();
+  //const dispatch = useDispatch();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    // <StoreProvider store={store}>
+    <React.StrictMode>
+      <DemoScreen/>
+      </React.StrictMode>
+    // </StoreProvider>
   );
+
 }
 
 export default App;

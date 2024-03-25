@@ -1,0 +1,1 @@
+export const USER ="@MY-APP.USER"

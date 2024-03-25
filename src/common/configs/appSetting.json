@@ -1,0 +1,4 @@
+{ 
+    "apiUrl" : "http://localhost:43234", 
+    "appVersion": "my-app v.1.0.1"
+}
