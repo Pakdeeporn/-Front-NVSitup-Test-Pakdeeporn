@@ -16,7 +16,6 @@ function App() {
     <React.StrictMode>
       <DemoScreen/>
       </React.StrictMode>
-    // </StoreProvider>
   );
 
 }

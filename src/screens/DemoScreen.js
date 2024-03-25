@@ -48,7 +48,7 @@ const CustomTableCell = ({ row, name, index, onChange }) => {
   const { isEditMode } = row;
   return (
     <TableCell align="left" className={classes.tableCell}>
-      {isEditMode && name !== 'user_id'? (
+      {isEditMode && name !== 'user_id' && name !== 'password'? (
         <Input
           value={row[name]}
           name={name}
@@ -61,7 +61,6 @@ const CustomTableCell = ({ row, name, index, onChange }) => {
     </TableCell>
   );
 };
-
 
 const DemoScreen = () => { 
 
@@ -83,10 +82,12 @@ const DemoScreen = () => {
     {
        //Create
        try {
-let obj = dataBody[index];
-console.log('obj', obj)
+          let obj = dataBody[index];
+          obj.password = "098764321";
         await DemoService.CreateUser(token, obj).then((response) => {
-          console.log('response create', response)
+          if(response.result.is_Success){
+            getDataTable();
+          }
         });
       } catch (e) {
         
@@ -95,12 +96,11 @@ console.log('obj', obj)
     else{
       //Update
       try {
-        let obj = dataBody.filter(
-          (element) => element.user_id === id
-        )[0];
-        console.log('obj', obj)
+        let obj = dataBody.filter((element) => element.user_id === id)[0];
                 await DemoService.UpdateUser(token, obj).then((response) => {
-                  console.log('response update', response)
+                  if(response.result.is_Success){
+                    getDataTable();
+                  }
                 });
               } catch (e) {
                 
@@ -192,8 +192,6 @@ console.log('obj', obj)
   }
 
   const onDelete = async (index, id) => {
-    console.log('index', index)
-    console.log('id', id)
 
     if(id === "")
     {
@@ -209,9 +207,10 @@ console.log('obj', obj)
     else{
       //Remove db
       try {
-                await DemoService.DeleteUser(token, id).then((response) => {
-                  console.log('response delete', response)
-                });
+                const response = await DemoService.DeleteUser(token, id);
+                if(response.result.is_Success){
+                  getDataTable();
+                }
               } catch (e) {
                 
               }
